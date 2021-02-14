@@ -44,7 +44,7 @@ async function IP(value) {
 
       var mymap = L.map("mapid").setView(
         [result.latitude, result.longitude],
-        12
+        7
       );
       const attribution =
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
