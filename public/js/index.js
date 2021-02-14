@@ -7,7 +7,7 @@ async function IP(value) {
     var string = "";
   }
   await fetch(
-    `http://ip-api.com/json/${string}?fields=country,countryCode,regionName,city,zip,lat,lon,timezone,currency,isp,proxy,query`
+    `https://ip-api.com/json/${string}?fields=country,countryCode,regionName,city,zip,lat,lon,timezone,currency,isp,proxy,query`
   ).then((response) => {
     response.json().then((result) => {
       document.querySelector("#loading").textContent = "";
