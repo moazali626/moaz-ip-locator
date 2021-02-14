@@ -1,8 +1,3 @@
-require("modules");
-require("dotenv").config();
-
-console.log(process.env);
-
 document.querySelector("#loading").textContent = "FETCHING DATA...";
 
 async function IP(value) {
