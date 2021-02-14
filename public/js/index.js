@@ -1,12 +1,12 @@
 document.querySelector("#loading").textContent = "FETCHING DATA...";
 
-function IP(value) {
+async function IP(value) {
   if (value) {
     var string = value;
   } else {
     var string = "";
   }
-  fetch(
+  await fetch(
     `http://ip-api.com/json/${string}?fields=country,countryCode,regionName,city,zip,lat,lon,timezone,currency,isp,proxy,query`
   ).then((response) => {
     response.json().then((result) => {
