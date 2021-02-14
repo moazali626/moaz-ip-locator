@@ -30,7 +30,7 @@ table th {
   overflow: hidden;
   word-wrap: break-word;
 }
-img {
+.logo {
   margin-top: 20px;
 }
 .para {

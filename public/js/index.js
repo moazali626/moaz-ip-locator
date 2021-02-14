@@ -1,3 +1,8 @@
+require("modules");
+require("dotenv").config();
+
+console.log(process.env);
+
 document.querySelector("#loading").textContent = "FETCHING DATA...";
 
 async function IP(value) {
@@ -13,7 +18,10 @@ async function IP(value) {
       document.querySelector("#loading").textContent = "";
       document.querySelector("#home-ip").textContent = result.ip;
       document.querySelector("#query").textContent = result.ip;
-      document.querySelector("#country").textContent = result.country_name;
+      document.querySelector("#country").innerHTML =
+        result.country_name +
+        " " +
+        `<span style="display:inline;"><img src="${result.flag}"></span>`;
       document.querySelector("#callingCode").textContent =
         "+" + result.calling_code;
       document.querySelector("#countryCode").textContent = result.country_code;
@@ -21,7 +29,6 @@ async function IP(value) {
       document.querySelector("#regionName").textContent = result.region;
       document.querySelector("#city").textContent = result.city;
       document.querySelector("#zip").textContent = result.postal;
-      document.querySelector("#flag").textContent = "N/A";
       document.querySelector("#timezone").textContent = result.time_zone.name;
       document.querySelector("#isp").textContent = result.asn.name;
 
