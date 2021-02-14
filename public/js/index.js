@@ -11,39 +11,45 @@ async function IP(value) {
   ).then((response) => {
     response.json().then((result) => {
       document.querySelector("#loading").textContent = "";
-      document.querySelector("#home-ip").textContent = result.query;
-      document.querySelector("#query").textContent = result.query;
-      document.querySelector("#country").textContent = result.country;
-      document.querySelector("#countryCode").textContent = result.countryCode;
-      document.querySelector("#currency").textContent = result.currency;
-      document.querySelector("#regionName").textContent = result.regionName;
+      document.querySelector("#home-ip").textContent = result.ip;
+      document.querySelector("#query").textContent = result.ip;
+      document.querySelector("#country").textContent = result.country_name;
+      document.querySelector("#callingCode").textContent =
+        "+" + result.calling_code;
+      document.querySelector("#countryCode").textContent = result.country_code;
+      document.querySelector("#currency").textContent = result.currency.code;
+      document.querySelector("#regionName").textContent = result.region;
       document.querySelector("#city").textContent = result.city;
-      document.querySelector("#zip").textContent = result.zip;
-      document.querySelector("#timezone").textContent = result.timezone;
-      document.querySelector("#isp").textContent = result.isp;
+      document.querySelector("#zip").textContent = result.postal;
+      document.querySelector("#flag").textContent = "N/A";
+      document.querySelector("#timezone").textContent = result.time_zone.name;
+      document.querySelector("#isp").textContent = result.asn.name;
 
       var proxy = document.querySelector("#proxy");
-      if (result.proxy) {
+      if (result.threat.is_proxy) {
         proxy.textContent = "Yes";
       } else {
         proxy.textContent = "No";
       }
 
-      document.querySelector("#lat").textContent = result.lat;
-      document.querySelector("#lon").textContent = result.lon;
+      document.querySelector("#lat").textContent = result.latitude;
+      document.querySelector("#lon").textContent = result.longitude;
 
       var container = L.DomUtil.get("mapid");
       if (container != null) {
         container._leaflet_id = null;
       }
 
-      var mymap = L.map("mapid").setView([result.lat, result.lon], 12);
+      var mymap = L.map("mapid").setView(
+        [result.latitude, result.longitude],
+        12
+      );
       const attribution =
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
       const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
       const tiles = L.tileLayer(tileUrl, { attribution });
       tiles.addTo(mymap);
-      L.marker([result.lat, result.lon]).addTo(mymap);
+      L.marker([result.latitude, result.longitude]).addTo(mymap);
     });
   });
 }
