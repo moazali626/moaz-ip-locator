@@ -6,7 +6,9 @@ async function IP(value) {
   } else {
     var string = "";
   }
-  await fetch(`https://ipapi.co/${string}/json/`).then((response) => {
+  await fetch(
+    `https://api.ipdata.co/${string}?api-key=a2a7120b310e1e4273fe4d1d65e062f207577c7f50e46e2222522f6c`
+  ).then((response) => {
     response.json().then((result) => {
       document.querySelector("#loading").textContent = "";
       document.querySelector("#home-ip").textContent = result.query;
