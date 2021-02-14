@@ -10,7 +10,7 @@ const viewPath = path.join(__dirname, "../views");
 app.set("view engine", "hbs");
 app.set("views", viewPath);
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 app.use(express.static(publicDirectoryPath));
 
